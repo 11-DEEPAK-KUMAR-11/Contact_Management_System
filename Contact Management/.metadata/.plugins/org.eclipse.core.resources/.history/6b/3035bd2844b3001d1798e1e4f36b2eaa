@@ -1,0 +1,76 @@
+package com.contactManagement.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.contactManagement.exception.ContactException;
+import com.contactManagement.model.Contacts;
+import com.contactManagement.repository.ContactRepo;
+
+@Service
+public class ContactServiceImpl implements ContactService {
+
+	@Autowired
+	ContactRepo cRepo;
+	
+	@Override
+	public Contacts addNewContact(Contacts contact) throws ContactException {
+		
+		Optional<Contacts> alreadyExist=cRepo.findById(contact.getCid());
+		
+		if(alreadyExist !=null)
+		{
+			throw new ContactException("Contact details with this Id is already present !");
+		}
+		
+		cRepo.save(contact);
+		
+		return contact;
+	}
+
+	@Override
+	public String updateContactByContactId(Integer cid,Contacts contact) throws ContactException {
+
+		Optional<Contacts> alreadyExist=cRepo.findById(cid);
+		
+		if(alreadyExist ==null)
+		{
+			throw new ContactException("Contact details with this Id is not present !");
+		}
+		
+		Contacts found=alreadyExist.get();
+		
+		found.setFullName(contact.getFullName());
+		found.setEmail(contact.getEmail());
+		found.setMobile(contact.getMobile());
+		
+		
+		return "Contact details updated successfully";
+	}
+
+	@Override
+	public String deleteContactByContactId(Integer cid) throws ContactException {
+		
+        Optional<Contacts> alreadyExist=cRepo.findById(cid);
+		
+		if(alreadyExist ==null)
+		{
+			throw new ContactException("Contact details with this Id is not present !");
+		}
+		
+		Contacts found=alreadyExist.get();
+		cRepo.delete(found);
+    
+		return "Contact deleted successfully !";
+	}
+
+	@Override
+	public Contacts getContactByName(String name) throws ContactException {
+
+		Contacts found= cRepo.findByFullName(name);
+		return found;
+	}
+
+}
