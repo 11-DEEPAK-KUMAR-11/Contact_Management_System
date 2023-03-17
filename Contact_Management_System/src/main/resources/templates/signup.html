@@ -1,13 +1,85 @@
 <!doctype html>
-<html lang="en" xmlns:th=" http://www.thymeleaf.org" th:replace="base:: layout(~{::section})">
+<html lang="en" xmlns:th=" http://www.thymeleaf.org"
+	th:replace="base:: layout(~{::section})">
 <head>
-	<meta charset="UTF-8" />
-	<title >Signup page</title>
+<meta charset="UTF-8" />
+<title>Signup page</title>
 </head>
 <body>
 	<section>
-	<h1>This is signup page</h1>
-	<h2>Here we will write sign features</h2>
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-6 offset-md-3">
+
+					<div class="my-card mt-2">
+					   
+					   <div class="container text-center">
+					       <img style="width:70px" src="" th:src="@{/image/form.png}" alt="" />
+					   </div>
+
+						<h3 class="text-center">Register Here</h3>
+
+						<form action="" th:action="@{/do_register}" method="post" >
+
+							<!-- Name field -->
+
+							<div class="form-group">
+								<label for="name_field">Your Name</label> 
+								<input
+									type="text" class="form-control" id="name_field"
+									aria-describedby="nameHelp" placeholder="Enter your name" required/>
+									
+							</div>		
+							
+							<!-- Email field -->
+
+							<div class="form-group">
+								<label for="email_field">Your Email</label> 
+								<input
+									type="email" class="form-control" id="email_field"
+									aria-describedby="emailHelp" placeholder="Enter your email" required/>
+									
+							</div>		
+							
+							<!-- Password field -->
+
+							<div class="form-group">
+								<label for="password_field">Your Password</label> 
+								<input
+									type="password" class="form-control" id="password_field"
+									aria-describedby="passwordHelp" placeholder="Enter your password" required/>
+									
+							</div>		
+							
+							<!-- About user -->
+							
+							<div class="form-group">
+							
+							  <textarea placeholder="Enter something about yourself" class="form-control" rows="5"></textarea>
+							
+							</div>
+							
+							<div class="container text-center">
+							
+							  <button type="submit" class="btn bg-primary text-white">Submit</button>
+							  
+							  <button type="reset" class="btn bg-warning">Reset</button>
+							 
+							</div>
+							
+						</form>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
 	</section>
 </body>
 </html>
