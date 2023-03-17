@@ -1,12 +1,23 @@
 <!doctype html>
-<html lang="en" xmlns:th=" http://www.thymeleaf.org" th:replace="base:: layout(~{::section})">
+<html lang="en" xmlns:th=" http://www.thymeleaf.org"
+	th:replace="base:: layout(~{::section})">
 <head>
-	<meta charset="UTF-8" />
-	<title >Home page</title>
+<meta charset="UTF-8" />
+<title>Home page</title>
 </head>
 <body>
-	<section>
-	<h1>This is home page</h1>
+	<section
+		class="banner d-flex justify-content-center align-items-center">
+		<div class="text-center">
+			<h1 class="font-weight-bold">Contact Manager</h1>
+			<p style="width:65% ; margin:auto">A contact management system lets you sync all of your contacts
+				to one record, stay on top of your networks, and communicate in
+				real-time.We provide very efficient and smarter way of handling contacts.
+			</p>
+				
+			<button class="btn bg-primary bg-lg text-white" style="margin-top:25px">Get Start</button>	
+		</div>
+
 	</section>
 </body>
 </html>

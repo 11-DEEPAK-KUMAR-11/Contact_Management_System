@@ -21,4 +21,17 @@ public class HomeController {
 		model.addAttribute("title", "About - Contact Manager");
 		return "about";
 	}
+	
+	
+	@GetMapping("/signup")
+	public String signup(Model model)
+	{
+		model.addAttribute("title", "Signup - Contact Manager");
+		return "signup";
+	}
+	
+	
+	
+	
+	
 }
