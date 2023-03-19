@@ -1,7 +1,12 @@
 package com.contactManager.controller;
 
 
+import java.util.Set;
+
+import jakarta.validation.ValidatorFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,15 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.contactManager.models.User;
-
+import com.contactManager.models.UserValidationGroup;
 import com.contactManager.service.UserService;
 
-
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
-
-
-
-
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
 
 @Controller
@@ -31,10 +34,8 @@ public class HomeController {
 	@Autowired
     private UserService userService;
 	
-	
-	
-	
-	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/home")
 	public String home(Model model)
@@ -94,7 +95,35 @@ public class HomeController {
             return "signup";
         }
 
-        userService.saveUser(user);
+//      user.setRole("Role_USER");
+//		user.setEnabled(true);
+//		user.setImageUrl("default.png");
+//		user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        
+		// Hibernate validator
+		
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<User>> violations = validator.validate(user, UserValidationGroup.class);
+
+        if (!violations.isEmpty()) {
+        	
+            // Handle validation errors
+            for (ConstraintViolation<User> violation : violations) {
+                System.out.println(violation.getMessage());
+            }
+        } else {
+        	
+            // Persist the user object
+            user.setRole("ROLE_USER");
+            user.setEnabled(true);
+            user.setImageUrl("default.png");
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userService.saveUser(user);
+        }
+
+        
+        //userService.saveUser(user);
         model.addAttribute("message", "You are registered successfully ! Please login..!");
         return "signup";
     }

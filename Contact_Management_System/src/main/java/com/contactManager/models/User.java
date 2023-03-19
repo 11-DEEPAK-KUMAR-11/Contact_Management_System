@@ -36,9 +36,10 @@ public class User {
 	private String role;
 	
 	@NotBlank(message = "Password can not be empty !!")
-	@Size(min = 3, max = 15, message = "Password must be between 3 - 15 characters !!")
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{3,15}$", message = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.")
+	@Size(min=3, max=15, message="Password must be between 3 - 15 characters !!", groups=UserValidationGroup.class)
+	@Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$", message="Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.", groups=UserValidationGroup.class)
 	private String password;
+
 	
 	private boolean enabled;
 	
