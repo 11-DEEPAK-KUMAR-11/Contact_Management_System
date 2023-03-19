@@ -95,7 +95,8 @@ public class HomeController {
         }
 
         userService.saveUser(user);
-        return "home";
+        model.addAttribute("message", "You are registered successfully ! Please login..!");
+        return "signup";
     }
 
 	

@@ -26,9 +26,9 @@
                        </div> -->
 
 
-						
+						<p th:text="${message}" class=text-center style="color:green"></p>
 
-
+					<!-- <div th:text="${message}" class="alert alert-success text-center" role="alert"></div> -->	
 
 
 
@@ -40,8 +40,8 @@
 
 						<h3 class="text-center">Register Here</h3>
 
-						<form novalidate action="" th:action="@{/do_register}" method="post"
-							th:object="${user}">
+						<form novalidate action="" th:action="@{/do_register}"
+							method="post" th:object="${user}">
 
 							<!-- Name field -->
 
@@ -52,9 +52,10 @@
 									aria-describedby="nameHelp" placeholder="Enter your name"
 									required th:value="${user.name}" />
 								<!-- This will show the name in the form and also name attribute to send data to user-->
-								 
-								 <div th:each="e : ${#fields.errors('name')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-						         </div>
+
+								<div th:each="e : ${#fields.errors('name')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
 
 							</div>
 
@@ -67,8 +68,9 @@
 									aria-describedby="emailHelp" placeholder="Enter your email"
 									required th:value="${user.email}" />
 
-                                 <div th:each="e : ${#fields.errors('email')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-						         </div>
+								<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
 							</div>
 
 							<!-- Password field -->
@@ -80,8 +82,9 @@
 									id="password_field" aria-describedby="passwordHelp"
 									placeholder="Enter your password" required />
 
-                                 <div th:each="e : ${#fields.errors('password')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-						         </div>
+								<div th:each="e : ${#fields.errors('password')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
 							</div>
 
 							<!-- About user -->
@@ -98,12 +101,14 @@
 							<div class="form-group form-check text-center">
 
 								<input type="checkbox" name="agreement" class="form-check-input"
-									id="agreement" th:classappend="${#fields.hasErrors('enabled')?'is-invalid':''}"/> 
-									<label for="agreement">Accept terms and conditions</label>
-									
-									<div th:each="e : ${#fields.errors('enabled')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-						            </div>
-									
+									id="agreement"
+									th:classappend="${#fields.hasErrors('enabled')?'is-invalid':''}" />
+								<label for="agreement">Accept terms and conditions</label>
+
+								<div th:each="e : ${#fields.errors('enabled')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
+
 
 							</div>
 
@@ -129,4 +134,4 @@
 
 	</section>
 </body>
-</html> 
+</html>
