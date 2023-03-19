@@ -3,6 +3,10 @@ package com.contactManager.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,13 +25,19 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@NotBlank(message="Name field ir required")
+	@Size(min=3, max=30 , message="Minimum 3 and maximum 40 charecters are allowed!")
 	private String name;
 	
 	@Column(unique = true)
+	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Invalid Email Address !!")
 	private String email;
 	
 	private String role;
 	
+	@NotBlank(message = "Password can not be empty !!")
+	@Size(min = 3, max = 15, message = "Password must be between 3 - 15 characters !!")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{3,15}$", message = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.")
 	private String password;
 	
 	private boolean enabled;
@@ -115,6 +125,13 @@ public class User {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", role=" + role + ", password=" + password
+				+ ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", about=" + about + ", contacts=" + contacts
+				+ "]";
 	}
 	
 	
