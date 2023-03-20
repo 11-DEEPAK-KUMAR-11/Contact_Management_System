@@ -13,6 +13,11 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+	integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <title th:text=${title}>Home</title>
 
 <link rel="stylesheet" th:href="@{/css/style.css}" />
@@ -32,17 +37,17 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto text-uppercase">
-				<li class="nav-item active"><a th:href="@{/home}" class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
+				<li class="nav-item active"><a th:href="@{/home}"
+					class="nav-link" href="#">Home <span class="sr-only">(current)</span>
 				</a></li>
-				
+
 				<!-- <li class="nav-item"><a class="nav-link" href="#">About</a></li>  -->
 
-				<li class="nav-item"><a class="nav-link"  tabindex="-1"
+				<li class="nav-item"><a class="nav-link" tabindex="-1"
 					aria-disabled="true">Hi , <span th:text="${user.name}"></span></a></li>
 
-				<li class="nav-item"><a class="nav-link" th:href="@{/logout}" href="#" tabindex="-1"
-					aria-disabled="true">Logout</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}"
+					href="#" tabindex="-1" aria-disabled="true">Logout</a></li>
 
 			</ul>
 
@@ -51,7 +56,35 @@
 
 	<!-- Navbar end  -->
 
-	<div th:replace="${content}"></div>
+
+	<!-- Start side bar -->
+
+	<div class="sidebar">
+        <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
+		<a href="#" class="item"><i class="fa-sharp fa-solid fa-house-chimney"></i> Home</a> 
+		<a href="#" class="item"><i class="fa-solid fa-user"></i> Profile</a> 
+		<a href="#" class="item"> <i class="fa-regular fa-address-card"></i> View Contacts</a> 
+		<a href="#" class="item"><i class="fa-solid fa-user-plus"></i> Add Contact</a> 		
+		<a href="#" class="item"><i class="fa-solid fa-gear"></i> Setting</a> 
+		<a href="#" class="item"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+		<div class="divider"></div>
+
+	</div>
+
+	<!-- end side bar -->
+
+
+
+	<!-- Content area -->
+
+	<div class="content">
+
+        <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
+		<div th:replace="${content}"></div>
+
+	</div>
+
+	<!-- end content area -->
 
 
 	<!-- Optional JavaScript -->
