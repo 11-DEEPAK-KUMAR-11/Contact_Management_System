@@ -129,6 +129,13 @@ public class HomeController {
     }
 
 	
+	//Login page handler
+	@GetMapping("/signin")
+	public String loginPageHandler(Model model)
+	{
+		model.addAttribute("title", "Sign in page");
+		return "login";
+	}
 	
 //	@PostMapping("/do_register")
 //	public String registerUser(@ModelAttribute("user") User user, @RequestParam(value="agreement" , defaultValue="false") boolean agreement, HttpSession session,
