@@ -1,11 +1,15 @@
 <!doctype html>
-<html lang="en" xmlns:th=" http://www.thymeleaf.org">
+<html lang="en" xmlns:th=" http://www.thymeleaf.org" 
+      th:replace="~{User/userBase:: layout(~{::section})}">
 <head>
 	<meta charset="UTF-8" />
 	<title>User Dashboard</title>
 </head>
 <body>
-	<h1>Welcome to the Dashboard</h1>
+     <section>
+     <h1>Welcome to the Dashboard</h1>
 	<h1>This is user private dashboard</h1>
+     </section>
+	
 </body>
 </html>
