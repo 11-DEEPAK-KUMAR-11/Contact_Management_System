@@ -7,7 +7,164 @@
 </head>
 <body>
      <section>
-     <h1>Add Contact</h1>
+     
+     <div class="card mr-4 mt-2 ml-4">
+     
+     <div class="card-body">
+        
+         <h1 class="text-center">Add Contact</h1>
+         
+         <div class="container-fluid mt-1">
+         
+           <div class="row">
+           
+              <div class="col-md-8 offset-md-2">
+              
+                 <form action="#"
+                       th:object="${contact}"
+                       enctype="multipart/form-data"
+                       method="POST"
+                       th:action="@{user/process-contact}"
+                       class="mt-2"
+                 >
+                  
+                   <!-- First name -->
+                   
+                   <div class="input-group">
+                   
+                      <div class="input-group-prepend">
+                      
+                         <div class="input-group-text ">
+                         
+                           <i class="fas fa-user-alt"></i>
+                          
+                         </div>
+                      
+                      </div>
+                      
+                      <input type="text" id="firstName" name="name" placeholder="Enter Name" class="form-control" />
+                   
+                   </div> 
+                 
+                 
+                   <!-- Nick name -->
+                   
+                   <div class="input-group mt-3">
+                   
+                      <div class="input-group-prepend">
+                      
+                         <div class="input-group-text ">
+                         
+                           <i class="fas fa-user-alt"></i>
+                          
+                         </div>
+                      
+                      </div>
+                      
+                      <input type="text" id="firstName" name="firstName" placeholder="Enter Nick Name" class="form-control" />
+                   
+                   </div> 
+                   
+                   
+                   <!-- Phone field -->
+                   
+                   <div class="input-group mt-3">
+                   
+                      <div class="input-group-prepend">
+                      
+                         <div class="input-group-text ">
+                         
+                           <i class="fas fa-phone"></i>
+                          
+                         </div>
+                      
+                      </div>
+                      
+                      <input type="number" id="phone" name="phone" placeholder="Enter Phone Number" class="form-control" />
+                   
+                   </div> 
+                   
+                   
+                   <!-- E-mail field -->
+                   
+                   <div class="input-group mt-3">
+                   
+                      <div class="input-group-prepend">
+                      
+                         <div class="input-group-text ">
+                         
+                           <i class="fa-solid fa-envelope"></i>
+                          
+                         </div>
+                      
+                      </div>
+                      
+                      <input type="email" id="email" name="email" placeholder="Enter E-mail Address" class="form-control" />
+                   
+                   </div> 
+                   
+                   
+                   <!-- Work field -->
+                   
+                   <div class="input-group mt-3">
+                   
+                      <div class="input-group-prepend">
+                      
+                         <div class="input-group-text ">
+                         
+                           <i class="fas fa-briefcase"></i>
+                          
+                         </div>
+                      
+                      </div>
+                      
+                      <input type="text" id="work" name="work" placeholder="Enter Work" class="form-control" />
+                   
+                   </div> 
+                   
+                   
+                   <!-- Contact Description -->
+                   
+                   <div class="form-group mt-3">
+                   
+                      <textarea placeholder="Enter Contact Description" name="description" id="description" class="form-control" rows="5"></textarea>
+                   
+                   </div>
+                   
+                   
+                   <!-- Image field -->
+                   
+                   <div class="custom-file">
+                   
+                     <input type="file" name="imageUrl" />
+                   
+                   </div>
+                   
+                   
+                   
+                   <div class="container text-center">
+                   
+                     <button class="btn btn-outline-primary">Save Contact</button>
+                   
+                   </div>
+                   
+                   
+                   
+                   
+                   
+                 
+                 </form>
+              
+              </div>
+           
+           </div>
+         
+         </div>
+     
+     </div>
+     
+     </div>
+    
 	
      </section>
 	
