@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.contactManager.models.Contact;
@@ -62,6 +63,24 @@ public class UserController {
 	}
 	
 	
+	//Processing add contact form
+	
+	@PostMapping("/process-contact")
+	public String processing(@ModelAttribute Contact contact, Principal principal)
+	{
+		String userName=principal.getName();
+		
+		User user=userRepo.findByEmail(userName);
+		
+		contact.setUser(user);
+		
+		user.getContacts().add(contact);
+		userRepo.save(user);
+		
+//		System.out.println("Data : "+contact);
+		System.out.println("Data added to database");
+		return "User/addContact.html";
+	}
 	
 	
 	
