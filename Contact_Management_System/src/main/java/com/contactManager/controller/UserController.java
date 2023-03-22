@@ -1,14 +1,23 @@
 package com.contactManager.controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.contactManager.models.Contact;
 import com.contactManager.models.User;
@@ -66,19 +75,54 @@ public class UserController {
 	//Processing add contact form
 	
 	@PostMapping("/process-contact")
-	public String processing(@ModelAttribute Contact contact, Principal principal)
+	public String processing(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file, Principal principal)
 	{
-		String userName=principal.getName();
+		try {
+			
+			String userName=principal.getName();
+			
+			User user=userRepo.findByEmail(userName);
+			
+			//Processing and downloading file
+			
+			if(file !=null && !file.isEmpty())
+			{
+				//upload the file to folder update the name to contact 
+				contact.setImageUrl(file.getOriginalFilename());
+				
+				//where to store the image
+				File saveFile=new ClassPathResource("static/image").getFile();
+				
+				Path path=Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+				
+				Files.copy(file.getInputStream(), path,StandardCopyOption.REPLACE_EXISTING);
+				
+				System.out.println("Image is uploaded");
+				
+				
+				
+			}
+			
+			else {
+				//Give some error messages
+				System.out.println("File is empty !");
+			}
+			
+			
+			
+			contact.setUser(user);
+			
+			user.getContacts().add(contact);
+			userRepo.save(user);
+			
+	        
+			System.out.println("Data added to database");
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		
-		User user=userRepo.findByEmail(userName);
-		
-		contact.setUser(user);
-		
-		user.getContacts().add(contact);
-		userRepo.save(user);
-		
-//		System.out.println("Data : "+contact);
-		System.out.println("Data added to database");
 		return "User/addContact.html";
 	}
 	
