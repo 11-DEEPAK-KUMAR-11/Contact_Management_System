@@ -24,7 +24,7 @@
                        th:object="${contact}"
                        enctype="multipart/form-data"
                        method="POST"
-                       th:action="@{user/process-contact}"
+                       th:action="@{/user/process-contact}"
                        class="mt-2"
                  >
                   
@@ -61,7 +61,7 @@
                       
                       </div>
                       
-                      <input type="text" id="firstName" name="firstName" placeholder="Enter Nick Name" class="form-control" />
+                      <input type="text" id="nickName" name="nickName" placeholder="Enter Nick Name" class="form-control" />
                    
                    </div> 
                    
@@ -136,7 +136,7 @@
                    
                    <div class="custom-file">
                    
-                     <input type="file" name="imageUrl" />
+                     <input type="file" name="profile" />
                    
                    </div>
                    
