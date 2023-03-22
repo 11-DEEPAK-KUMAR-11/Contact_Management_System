@@ -12,6 +12,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.contactManager.models.Contact;
 import com.contactManager.models.User;
+import com.contactManager.repository.ContactRepo;
 import com.contactManager.repository.UserRepo;
+import com.contactManager.service.ContactService;
 
 @Controller
 @RequestMapping("/user")
@@ -29,6 +33,9 @@ public class UserController {
 
 	@Autowired
 	private UserRepo userRepo;
+	
+	@Autowired
+	private ContactService contactService;
 	
 	//add common data to all handler or all response automatically
 	@ModelAttribute
@@ -75,13 +82,29 @@ public class UserController {
 	//Processing add contact form
 	
 	@PostMapping("/process-contact")
-	public String processing(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file, Principal principal)
+	public String processing(@ModelAttribute Contact contact,BindingResult result,@RequestParam("profileImage") MultipartFile file, Principal principal,Model model)
 	{
 		try {
 			
 			String userName=principal.getName();
 			
 			User user=userRepo.findByEmail(userName);
+			
+			if (contactService.isUserAlreadyPresent(contact.getEmail())) {
+	        	
+	            FieldError error = new FieldError("contact", "email", "Email already exists");
+	            System.out.println("This email id is already exist! ");
+	            
+	            
+	            result.addError(error);
+	        }
+
+	        if (result.hasErrors()) {
+	        	
+	        	System.out.println("Error"+result.toString());
+	        	model.addAttribute("contact", contact);
+	            return "User/addContact";
+	        }
 			
 			//Processing and downloading file
 			
@@ -115,7 +138,7 @@ public class UserController {
 			user.getContacts().add(contact);
 			userRepo.save(user);
 			
-	        
+			model.addAttribute("message", "Contact added successfully !");
 			System.out.println("Data added to database");
 			
 		} catch (Exception e) {

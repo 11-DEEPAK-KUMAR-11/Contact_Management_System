@@ -12,6 +12,9 @@
      
      <div class="card-body">
         
+        <!-- contact added success message -->
+        <p th:text="${message}" class=text-center style="color:green"></p>
+        
          <h1 class="text-center">Add Contact</h1>
          
          <div class="container-fluid mt-1">
@@ -99,7 +102,13 @@
                       
                       </div>
                       
-                      <input type="email" id="email" name="email" placeholder="Enter E-mail Address" class="form-control" />
+                      <input type="email" id="email" name="email" placeholder="Enter E-mail Address" class="form-control"
+                       th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+                       required th:value="${contact.email}" />
+                       
+                       <div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+									id="validationServer03Feedback" class="invalid-feedback">
+								</div>
                    
                    </div> 
                    
