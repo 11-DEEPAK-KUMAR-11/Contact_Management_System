@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -36,6 +37,9 @@ public class UserController {
 	
 	@Autowired
 	private ContactService contactService;
+	
+	@Autowired
+	private ContactRepo contactRepo;
 	
 	//add common data to all handler or all response automatically
 	@ModelAttribute
@@ -151,6 +155,20 @@ public class UserController {
 	
 	
 	
+	//show all contacts handler
+	@GetMapping("/show-contacts")
+	public String showContacts(Model model,Principal principal)
+	{
+		String userName=principal.getName();
+				
+		User user=userRepo.findByEmail(userName);
+		
+		List<Contact> contacts=contactRepo.findContactByUser(user.getId());
+		model.addAttribute("contacts",contacts);
+		
+		model.addAttribute("title", "User Contacts");
+		return "User/showContact";
+	}
 	
 	
 	
