@@ -137,6 +137,7 @@ public class UserController {
 			else {
 				//Give some error messages
 				System.out.println("File is empty !");
+				contact.setImageUrl("contact.png");
 			}
 			
 			
