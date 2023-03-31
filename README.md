@@ -8,7 +8,7 @@ real-time.
 
 This is a Contact Management System built using Spring Boot and Thymeleaf. The purpose of this system is to allow users to manage their contacts by storing and retrieving their information.
 
-Features
+### Features
 - Login/Logout
 - Add a new contact
 - View all contacts
@@ -17,13 +17,13 @@ Features
 - Search for a contact by name or phone number
 
 
-Technologies Used
+### Technologies Used
 - Spring Boot
 - Thymeleaf
 - Bootstrap
 - MySQL
 
-Usage
+### Usage
 - To add a new contact, click on the "Add Contact" button and fill out the form.
 - To view all contacts, click on the "View Contacts" button.
 - To update an existing contact, click on the "Edit" button next to the contact you want to update.
