@@ -22,3 +22,10 @@ Technologies Used
 - Thymeleaf
 - Bootstrap
 - MySQL
+
+Usage
+- To add a new contact, click on the "Add Contact" button and fill out the form.
+- To view all contacts, click on the "View Contacts" button.
+- To update an existing contact, click on the "Edit" button next to the contact you want to update.
+- To delete an existing contact, click on the "Delete" button next to the contact you want to delete.
+- To search for a contact, type in the name or phone number in the search bar and click on the "Search" button.
