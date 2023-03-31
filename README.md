@@ -9,8 +9,16 @@ real-time.
 This is a Contact Management System built using Spring Boot and Thymeleaf. The purpose of this system is to allow users to manage their contacts by storing and retrieving their information.
 
 Features
+- Login/Logout
 - Add a new contact
 - View all contacts
 - Update existing contact
 - Delete existing contact
 - Search for a contact by name or phone number
+
+
+Technologies Used
+- Spring Boot
+- Thymeleaf
+- Bootstrap
+- MySQL
