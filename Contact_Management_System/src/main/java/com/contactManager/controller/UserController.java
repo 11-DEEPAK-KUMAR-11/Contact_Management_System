@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -182,12 +183,37 @@ public class UserController {
 	//showing particular contact details
 	
 	@GetMapping("/{cId}/contact")
-	public String showDetails(@PathVariable("cId") Integer cId, Model model)
+	public String showDetails(@PathVariable("cId") Integer cId, Model model,Principal principal)
 	{
-		Contact contact=contactRepo.findById(cId).get();
-		model.addAttribute("contact", contact);
+		Optional<Contact> contactOpt=contactRepo.findById(cId);
 		
-		System.out.println("contact Id"+cId);
+		
+		Contact contact=contactOpt.get();
+//		if(contact==null)
+//		{
+//			model.addAttribute("contact",contact);
+//			
+//			System.out.println("Contact not found");
+//			return "User/contactDetails";
+//		}
+		
+		
+			
+			String userName=principal.getName();
+			
+			User user=userRepo.findByEmail(userName);
+			
+			if(user.getId()==contact.getUser().getId())
+			{
+				model.addAttribute("contact", contact);
+			}
+
+	      		
+			
+			System.out.println("contact Id"+cId);
+		
+		
+		
 		return "User/contactDetails";
 	}
 	
