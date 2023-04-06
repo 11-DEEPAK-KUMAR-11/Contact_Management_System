@@ -179,6 +179,19 @@ public class UserController {
 		return "User/showContact";
 	}
 	
+	//showing particular contact details
+	
+	@GetMapping("/{cId}/contact")
+	public String showDetails(@PathVariable("cId") Integer cId, Model model)
+	{
+		Contact contact=contactRepo.findById(cId).get();
+		model.addAttribute("contact", contact);
+		
+		System.out.println("contact Id"+cId);
+		return "User/contactDetails";
+	}
+	
+	
 	
 	
 }
