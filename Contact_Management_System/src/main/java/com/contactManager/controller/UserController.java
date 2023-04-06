@@ -206,6 +206,8 @@ public class UserController {
 			if(user.getId()==contact.getUser().getId())
 			{
 				model.addAttribute("contact", contact);
+				
+				model.addAttribute("title", contact.getName());
 			}
 
 	      		
