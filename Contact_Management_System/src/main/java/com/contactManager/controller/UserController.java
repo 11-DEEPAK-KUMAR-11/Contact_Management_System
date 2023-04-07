@@ -219,6 +219,37 @@ public class UserController {
 		return "User/contactDetails";
 	}
 	
+	//delete contact handler
+	
+	@GetMapping("/delete/{cId}")
+	public String deleteContact(@PathVariable("cId") Integer cId, Model model)
+	{
+      
+		Optional<Contact> contactOpt=contactRepo.findById(cId);
+		Contact contact=contactOpt.get();
+		
+		//De-linking the user from contact so that cascade all properties will not come into picture and contact will be deleted
+		//contact.setUser(null);
+		
+		// remove the contact from the user's contacts list
+	    User user = contact.getUser();
+	    user.getContacts().remove(contact);
+	    
+	    // delete the contact entity
+		
+		contactRepo.delete(contact);
+		
+		model.addAttribute("message", "Contact deleted successfully !");
+		
+		return "redirect:/user/show-contacts/0";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

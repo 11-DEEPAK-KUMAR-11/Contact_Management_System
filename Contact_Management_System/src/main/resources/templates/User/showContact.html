@@ -7,6 +7,9 @@
 </head>
 <body>
 	<section>
+	
+	    <p th:text="${message}" class=text-center style="color:green"></p>
+	   
 		<div class="card mr-3 ml-1">
 
 			<div class="card-body ">
@@ -41,7 +44,7 @@
 							<td th:text="${c.phone}"></td>
 							<td>
 
-								<button class="btn btn-danger btn-sm">Delete</button>
+								<a th:onclick="|deleteContact(${c.id})|" class="btn btn-danger btn-sm">Delete</a>
 								<button class="btn btn-primary btn-sm">Update</button>
 
 							</td>
