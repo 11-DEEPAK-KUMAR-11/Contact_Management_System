@@ -245,7 +245,7 @@ public class UserController {
 	}
 	
 	
-	// update Contact details handler
+	//Open update Contact details handler
 	@PostMapping("/update-contact/{cId}")
 	public String updateContact(@PathVariable("cId") Integer cId,Model model)
 	{
@@ -261,6 +261,55 @@ public class UserController {
 	}
 	
 	
+	// update contact handler
+	
+	@PostMapping("/process-update")
+	public String updateHandler(@ModelAttribute Contact contact ,@RequestParam("profileImage") MultipartFile file, Principal principal,Model model)
+	{
+		try{
+			
+			Contact oldContact=contactRepo.findById(contact.getId()).get();
+			
+			if(!file.isEmpty())
+			{
+				//Delete old pic
+				File deleteFile=new ClassPathResource("static/image").getFile();
+				File file1=new File(deleteFile,oldContact.getImageUrl());
+				file1.delete();
+				
+				
+				
+				
+				//Update new pic
+                File saveFile=new ClassPathResource("static/image").getFile();
+				
+				Path path=Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+				
+				Files.copy(file.getInputStream(), path,StandardCopyOption.REPLACE_EXISTING);
+				
+				contact.setImageUrl(file.getOriginalFilename());
+				
+				System.out.println("Image is uploaded");
+				
+			}else {
+				contact.setImageUrl(oldContact.getImageUrl());
+			}
+			
+			User user=userRepo.findByEmail(principal.getName());
+			contact.setUser(user);
+			
+			contactRepo.save(contact);
+			
+			model.addAttribute("message", "Contact updated successfully !");
+			System.out.println("Data added to database");
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return "redirect:/user/"+contact.getId()+"/contact";
+	}
 	
 	
 	
