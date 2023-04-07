@@ -245,6 +245,20 @@ public class UserController {
 	}
 	
 	
+	// update Contact details handler
+	@PostMapping("/update-contact/{cId}")
+	public String updateContact(@PathVariable("cId") Integer cId,Model model)
+	{
+		
+		model.addAttribute("title","Update - Contact");
+		
+		Optional<Contact> contactOpt=contactRepo.findById(cId);
+		Contact contact=contactOpt.get();
+		
+		model.addAttribute("contact",contact);
+		
+		return "User/updateContact";
+	}
 	
 	
 	
