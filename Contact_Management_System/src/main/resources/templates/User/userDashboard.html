@@ -7,8 +7,40 @@
 </head>
 <body>
      <section>
-     <h1>Welcome to the Dashboard</h1>
-	<h1>This is user private dashboard</h1>
+       
+        <div class="container">
+        
+            <div class="card">
+            
+               <div class="card-body">
+               
+                  <div class="container text-center">
+               
+                      <img style="height: 200px; width: 200px;" class="profile_pic"
+						   src="" th:src="@{'/image/contact.png'}"
+						   alt="profile photo" />
+                  </div>
+                  
+               </div>
+               
+               <h1 class="text-center mt-3 mb-4 text-secondary font-italic font-weight-light">Start adding contacts on cloud</h1>
+               
+               
+               <a th:href="@{/user/add-contact}" style="width:60% ;margin:auto" class="btn btn-primary text-uppercase mt-4 mb-4">Add new contact</a>
+                
+                
+                <p style="width:65%; margin:auto" class="text-center font-italic font-weight-light mb-5">A contact management system lets you sync all of your contacts
+				to one record, stay on top of your networks, and communicate in
+				real-time.We provide very efficient and smarter way of handling contacts.
+			</p>
+                
+                
+            </div>
+            
+            
+             
+        </div>
+        
      </section>
 	
 </body>

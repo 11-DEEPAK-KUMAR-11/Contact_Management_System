@@ -312,6 +312,13 @@ public class UserController {
 	}
 	
 	
+	//User profile handler
+	@GetMapping("/profile")
+	public String userProfileHandler(Model model)
+	{
+		model.addAttribute("title", "Profile page");
+		return "User/profile";
+	}
 	
 	
 	
