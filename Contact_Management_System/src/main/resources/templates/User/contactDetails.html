@@ -88,6 +88,18 @@
 		 <h1 class="text-center p-3 mr-4 bg-danger text-white" th:unless="${contact}">Invalid Entry</h1> 
 		<!--   <h1 class="text-center p-3 mr-4 bg-danger text-white" th:if="${contact}">Invalid Entry for that request !</h1> -->
 
+      
+      <!-- Active link -->
+       <script>
+        
+          $(document).ready(() =>{
+        	  $(".item").removeClass("active");
+        	  $("#view-link").addClass("active")
+          });
+        
+        </script>
+    
+    
 	</section>
 
 </body>

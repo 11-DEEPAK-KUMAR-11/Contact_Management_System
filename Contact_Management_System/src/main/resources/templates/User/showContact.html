@@ -31,9 +31,9 @@
 				</div>
 				
 				
-
-				<table class="table">
-					<thead>
+              <div class="table-responsive">
+				<table class="table table-hover">
+					<thead class="thead-light">
 						<tr>
 							<th scope="col">ID</th>
 							<th scope="col">Name</th>
@@ -72,7 +72,7 @@
 
 					</tbody>
 				</table>
-
+             </div>
 
                 <!-- Pagination Part -->
 
@@ -96,6 +96,18 @@
 
 		</div>
 
+      
+      <!-- Active link -->
+       <script>
+        
+          $(document).ready(() =>{
+        	  $(".item").removeClass("active");
+        	  $("#view-link").addClass("active")
+          });
+        
+        </script>
+      
+    
 	</section>
 
 </body>
