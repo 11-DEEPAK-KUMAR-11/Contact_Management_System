@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +38,9 @@ import com.contactManager.service.ContactService;
 @RequestMapping("/user")
 public class UserController {
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@Autowired
 	private UserRepo userRepo;
 	
@@ -319,6 +323,54 @@ public class UserController {
 		model.addAttribute("title", "Profile page");
 		return "User/profile";
 	}
+	
+	
+	//Setting Handler
+	@GetMapping("/settings")
+	public String settingHandler()
+	{
+		return "User/setting";
+	}
+	
+	
+	//Change password handler
+	@PostMapping("/change-password")
+	public String changePassword(@RequestParam("oldPassword") String oldPassword ,@RequestParam("newPassword") String newPassword, Model model, Principal principal)
+	{
+		String userName=principal.getName();
+		
+		User currentUser=userRepo.findByEmail(userName);
+		
+		if(bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword()))
+		{
+			//Change password
+			currentUser.setPassword(bCryptPasswordEncoder.encode(newPassword));
+			userRepo.save(currentUser);
+			
+			System.out.println("Password changed successfully..!");
+			
+			model.addAttribute("message", new String("Password changed successfully..!"));
+			
+//			return "redirect:/user/index";
+			return "User/userDashboard";
+		}
+		else {
+			//error
+			System.out.println("Wrong password please enter correct password");
+			model.addAttribute("message", new String("WRONG PASSWORD !"));
+			
+			return "User/setting";
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
