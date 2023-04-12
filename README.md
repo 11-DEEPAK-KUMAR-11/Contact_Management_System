@@ -22,10 +22,15 @@ This is a Contact Management System built using Spring Boot and Thymeleaf. The p
 
 
 ### Technologies Used
+- Java
 - Spring Boot
 - Thymeleaf
 - Bootstrap
 - MySQL
+- HTML
+- CSS
+- JavaScript
+- Payment Gateway API of Razorpay
 
 ### Usage
 - To add a new contact, click on the "Add Contact" button and fill out the form.
