@@ -9,12 +9,16 @@ real-time.
 This is a Contact Management System built using Spring Boot and Thymeleaf. The purpose of this system is to allow users to manage their contacts by storing and retrieving their information.
 
 ### Features
-- Login/Logout
-- Add a new contact
-- View all contacts
-- Update existing contact
-- Delete existing contact
-- Search for a contact by name or phone number
+- Designed and developed a contact management system using Spring Boot for the
+  backend and Thymeleaf for the front end.
+- Implemented login and logout features with Spring Security for authentication and
+  client-server validation to ensure secure access to the application.
+- Created a user-friendly interface to allow users to add new contacts, update existing
+  contacts, and delete contacts as needed.
+- Implemented a password change feature to allow users to update their login credentials
+  from within the application's settings.
+- Integrated a payment gateway from Razorpay to enable users to donate money to the
+  cause.
 
 
 ### Technologies Used
