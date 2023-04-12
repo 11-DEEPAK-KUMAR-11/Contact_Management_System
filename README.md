@@ -48,7 +48,7 @@ This is a Contact Management System built using Spring Boot and Thymeleaf. The p
 
 ![Screenshot (1962)](https://user-images.githubusercontent.com/101390725/231449516-fd1704e5-0d9d-4e31-8faa-761d867d46c3.png)
 
-### Signup page with client server validation
+### Signup Page With Client Server Validation
 
 ![Screenshot (1963)](https://user-images.githubusercontent.com/101390725/231450102-cc3a6c1d-c33c-45f8-94db-bf5d3fc5b2bb.png)
 
