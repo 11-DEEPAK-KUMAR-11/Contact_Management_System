@@ -85,3 +85,8 @@ This is a Contact Management System built using Spring Boot and Thymeleaf. The p
 ### Changing Password
 
 ![Screenshot (1973)](https://user-images.githubusercontent.com/101390725/231455343-c004f277-4e55-46c2-a171-d6165480ca18.png)
+
+### Payment Process
+
+![Screenshot (1974)](https://user-images.githubusercontent.com/101390725/231455757-7a7b0cf5-0be4-4fbc-aa5f-67e32d58c517.png)
+
