@@ -38,3 +38,8 @@ This is a Contact Management System built using Spring Boot and Thymeleaf. The p
 - To update an existing contact, click on the "Edit" button next to the contact you want to update.
 - To delete an existing contact, click on the "Delete" button next to the contact you want to delete.
 - To search for a contact, type in the name or phone number in the search bar and click on the "Search" button.
+
+### Home Page
+
+![CMS png](https://user-images.githubusercontent.com/101390725/231448478-e5a6fd58-d850-427a-8f0e-ac475e62d897.png)
+
