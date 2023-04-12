@@ -7,8 +7,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
@@ -24,8 +26,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.contactManager.models.Contact;
@@ -33,6 +37,8 @@ import com.contactManager.models.User;
 import com.contactManager.repository.ContactRepo;
 import com.contactManager.repository.UserRepo;
 import com.contactManager.service.ContactService;
+
+import com.razorpay.*;
 
 @Controller
 @RequestMapping("/user")
@@ -367,9 +373,29 @@ public class UserController {
 	
 	
 	
-	
-	
-	
+	//Create order for payment
+	@PostMapping("/create_order")
+	@ResponseBody
+	public String createOrder(@RequestBody Map<String,Object> data) throws Exception
+	{
+		System.out.println(data);
+		double amount=Integer.parseInt(data.get("amount").toString());
+		
+		var client=new RazorpayClient("rzp_test_O8bLNtDGlCbGoh","l77w16r62y83Pe68jJ3pjung");
+		
+		JSONObject options = new JSONObject();
+		options.put("amount", amount*100);
+		options.put("currency", "INR");
+		options.put("receipt", "txn_123456");
+		
+		//Create order
+	    Order order=client.orders.create(options);
+        
+	    System.out.println(order);
+		
+	    //if you want to store the this data for further use
+		return order.toString();
+	}
 	
 	
 	
