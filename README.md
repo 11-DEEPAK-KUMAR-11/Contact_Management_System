@@ -81,3 +81,7 @@ This is a Contact Management System built using Spring Boot and Thymeleaf. The p
 ### Deleting Contact
 
 ![Screenshot (1971)](https://user-images.githubusercontent.com/101390725/231454819-e7717e46-03da-49df-bc75-c0e54efccec1.png)
+
+### Changing Password
+
+![Screenshot (1973)](https://user-images.githubusercontent.com/101390725/231455343-c004f277-4e55-46c2-a171-d6165480ca18.png)
