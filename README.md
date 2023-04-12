@@ -73,3 +73,7 @@ This is a Contact Management System built using Spring Boot and Thymeleaf. The p
 ### View Contacts Page
 
 ![Screenshot (1969)](https://user-images.githubusercontent.com/101390725/231453847-9ff15823-db39-4c62-9e07-53bf2bee3aff.png)
+
+### Searching Contacts
+
+![Screenshot (1970)](https://user-images.githubusercontent.com/101390725/231454294-58c409cb-4ffa-4890-bc83-a622c124f6a1.png)
